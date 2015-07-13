@@ -23,7 +23,8 @@ Pelo fato da interação se dar com os elementos da UI, não é preciso ter o c�
 O UIAutomatorViewer é uma ferramenta fundamental para o desenvolvimento com UIAutomator, visto que ela permite inspecionar os widgets da tela atual (seus IDs, texto, tipos, etc). Com essa informação em mãos, o desenvolvedor pode procurar por eles usando a API do UIAutomator e então simular a interação de um usuário com os mesmos.  
 A ferramenta se encontra em _android-sdk/tools/uiautomatorviewer_.
 
-![screenshot do uiautomatorviewer](https://i.imgur.com/YshxKe5.png)
+![screenshot do uiautomatorviewer sendo usado no 'Calendar'](https://i.imgur.com/YshxKe5.png)
+![screenshot do uiautomatorviewer sendo usado no 'iFood'](https://i.imgur.com/bNSgTVm.png)
 
 ## *API*
 
