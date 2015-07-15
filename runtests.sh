@@ -2,4 +2,4 @@
 
 ant build
 adb push bin/UIAutomatorSample.jar /data/local/tmp/
-adb shell uiautomator runtest UIAutomatorSample.jar -c com.sample.tests.Tests
+adb shell uiautomator runtest UIAutomatorSample.jar -c com.sample.tests.${1}

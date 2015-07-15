@@ -116,7 +116,7 @@ public class Utils
 		// if the app widget was found, simulate a click event
 		if (found)
 		{
-			app.click();
+			app.clickAndWaitForNewWindow();
 		}
 		else
 		{
