@@ -2,7 +2,7 @@
 
 UIAutomator is a test framework created by Google that enables the creation of automated tests for Android applications. These tests simulate the interaction of an actual user with the system UI.
 
-Its workflow is:
+The basic workflow looks like this:
 - Finding an UI element by using a combination of its attributes: id, text, content description, and so on.
 - Interacting with this element: tapping, dragging, waiting for it to disappear, etc.
 
