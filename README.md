@@ -11,7 +11,7 @@ It is needed, however for the target element to have some attribute that can dif
 
 ## *Setup*:
 - Download and install the [Android SDK](https://developer.android.com/sdk/index.html)
-- Using the SDK Manager, install the _Android Testing Support Library_
+- Using the SDK Manager, install the _Android Testing Support Repository_
 - Create a simple Java project, and add the following jar files to the build path:
   * _android-sdk/platforms/\<api-version\>/android.jar_
   * _android-sdk/platforms/\<api-version\>/uiautomator.jar_
@@ -38,7 +38,7 @@ The tool can be found under _android-sdk/tools/uiautomatorviewer_.
 
 #### Cons
 - It's only available on devices with API level 16 or newer.
-- The classic release o UIAutomator (the one that this tutorial refers to) did not provide good IDE integration (see the setup steps). The newer release, though (launched on March), integrates well with Android Studio, and the final result is a apk, and not a jar file.
+- The classic release o UIAutomator (the one that this tutorial refers to) did not provide good IDE integration (see the setup steps). The newer release (2.0), though (launched on March), integrates well with Android Studio, and the final result is a apk, and not a jar file.
 - If the UI element attributes change (text, id, content description) changes, the test has to be updated.
 
 ## *API*
@@ -53,3 +53,4 @@ The project that can be found in this repository utilizes most of UIAutomator fe
   - https://developer.android.com/
   - http://www.vogella.com/tutorials/AndroidTesting/article.html
   - http://testdroid.com/news/the-pros-and-cons-of-different-android-testing-methods
+  - http://www.slideshare.net/bitbar/different-android-test-automation-framework-what-works-you-the-best
