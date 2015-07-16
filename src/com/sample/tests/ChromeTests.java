@@ -25,7 +25,7 @@ public class ChromeTests extends AppTest
 		Log.d(TAG, "setUp!");
 	}
 	
-	public void tearDown()
+	public void tearDown() throws RemoteException, UiObjectNotFoundException
 	{
 		super.tearDown();
 		
@@ -35,7 +35,8 @@ public class ChromeTests extends AppTest
 	// Tests start here --------------------------------
 	
 	/***
-	 * Tests if a user can bookmark a website
+	 * Tests if an user can bookmark a website.
+	 * 
 	 * @throws UiObjectNotFoundException 
 	 */
 	public void testAddBookmark() throws UiObjectNotFoundException
@@ -46,7 +47,7 @@ public class ChromeTests extends AppTest
 		// The UiObject instances can be created anywhere, we can query if they exist in the current
 		// screen by calling obj.exists()
 		UiObject url_bar = new UiObject(new UiSelector().resourceId("com.android.chrome:id/url_bar"));
-		UiObject more_options = new UiObject(new UiSelector().description("More options"));
+		UiObject more_options = new UiObject(new UiSelector().resourceId("com.android.chrome:id/document_menu_button"));
 		UiObject bookmark_title_input = new UiObject(new UiSelector().resourceId("com.android.chrome:id/bookmark_title_input"));
 		UiObject ok = new UiObject(new UiSelector().resourceId("com.android.chrome:id/ok"));
 		UiObject favorite_star = new UiObject(new UiSelector().resourceId("com.android.chrome:id/button_two"));
@@ -65,10 +66,10 @@ public class ChromeTests extends AppTest
 			
 			this.device.waitForIdle(5000);
 			
-			// bookmarking the website
 			more_options.click();
 			
-			favorite_star.waitForExists(3000);
+			// bookmarking the website
+			favorite_star.waitForExists(5000);
 			
 			favorite_star.click();
 			

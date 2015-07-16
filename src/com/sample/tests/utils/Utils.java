@@ -125,7 +125,7 @@ public class Utils
 	}
 	
 	/***
-	 * Open the given System Settings
+	 * Open the given System Settings.
 	 * 
 	 * @param setting_title, the type of system settings that should
 	 * be opened, such as 'Display', or 'Bluetooth'
@@ -148,11 +148,83 @@ public class Utils
 		if (settings_list.scrollTextIntoView(setting_title))
 		{
 			// with the UiObject in hands, we can simulate the click event on it
-			new UiObject(new UiSelector().text(setting_title)).click();
+			new UiObject(new UiSelector().text(setting_title)).clickAndWaitForNewWindow();
 		}
 		else
 		{
 			throw new UiObjectNotFoundException(String.format("The %s setting does not exist!", setting_title));
+		}
+	}
+	
+	public String get_screen_timeout() throws RemoteException, UiObjectNotFoundException
+	{	
+		UiScrollable settings_list = new UiScrollable(new UiSelector());
+		UiObject sleep_widget = new UiObject(new UiSelector().text("Sleep").resourceId("android:id/title"));
+		
+		// Opening the Display settings
+		this.open_settings("Display");
+		
+		// Scrolling to the 'Sleep' setting
+		settings_list.scrollIntoView(sleep_widget);
+		
+		String summary_string = sleep_widget.getFromParent(new UiSelector().resourceId("android:id/summary")).getText();
+		
+		String[] tokens = summary_string.split(" ");
+		
+		return String.format("%s %s", tokens[1], tokens[2]);
+	}
+	
+	/**
+	 * Sets the screen timeout to the given value.
+	 * 
+	 * @param new_value, the new value of the screen timeout, in the 'N minutes/seconds' format
+	 * @throws UiObjectNotFoundException 
+	 * @throws RemoteException 
+	 */
+	public void set_screen_timeout(String new_value) throws RemoteException, UiObjectNotFoundException
+	{
+		UiScrollable settings_list = new UiScrollable(new UiSelector());
+		UiObject sleep_widget = new UiObject(new UiSelector().text("Sleep").resourceId("android:id/title"));
+		UiObject options_popup = new UiObject(new UiSelector().text("Sleep").resourceId("android:id/alertTitle"));
+		UiObject new_timeout = new UiObject(new UiSelector().text(new_value));
+		
+		// Opening the Display settings
+		this.open_settings("Display");
+		
+		// Scrolling to the 'Sleep' setting
+		settings_list.scrollIntoView(sleep_widget);
+		
+		sleep_widget.click();
+		
+		options_popup.waitForExists(5000);
+		
+		// setting the timeout to the new value by using the pop-up
+		if (new_timeout.exists())
+		{
+			new_timeout.click();
+			
+			sleep_widget.waitForExists(3000);
+			
+			// From the current widget, we can access its siblings or children
+			// by using 'getFromParent'
+			// this is useful when there are more than one widget
+			// with the same information, and we want to use the one that is
+			// a sibling or children of another known widget.
+			// In this example, there are more than one 'summary' widgets just
+			// like the one describing the current screen timeout
+			// we can then access the right element by searching for it taking
+			// sleep_widget as a starting point because we know that the target element
+			// is a sibling of sleep_widget.
+			String current_timeout_text = sleep_widget.getFromParent(new UiSelector().resourceId("android:id/summary")).getText();
+			
+			if(!current_timeout_text.equals(String.format("After %s of inactivity", new_value)))
+			{
+				throw new RuntimeException(String.format("Could not change the screen timeout to '%s'", new_value));
+			}
+		}
+		else
+		{
+			throw new RuntimeException(String.format("'%s' is not a valid value for the screen timeout", new_value));
 		}
 	}
 }

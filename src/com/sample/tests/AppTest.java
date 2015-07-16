@@ -15,11 +15,12 @@ import android.util.Log;
  */
 public class AppTest extends UiAutomatorTestCase
 {
-	public final static String TAG = IFoodTests.class.getSimpleName();
+	public final static String TAG = AppTest.class.getSimpleName();
 	
 	protected UiDevice device;
 	protected Utils utils;
 	protected String app_name;
+	protected String original_screen_timeout;
 	
 	public AppTest(String app_name)
 	{
@@ -39,15 +40,23 @@ public class AppTest extends UiAutomatorTestCase
 	{
 		Log.d(TAG, "setUp!");
 		
+		this.original_screen_timeout = this.utils.get_screen_timeout();
+		
+		this.utils.set_screen_timeout("30 minutes");
+		
 		this.utils.open_app(this.app_name);
 	}
 	
 	/**
 	 * The tearDown() method runs after each test and is used to
 	 * revert changes made by the test to the environment
+	 * @throws UiObjectNotFoundException 
+	 * @throws RemoteException 
 	 */
-	public void tearDown()
+	public void tearDown() throws RemoteException, UiObjectNotFoundException
 	{
 		Log.d(TAG, "tearDown!");
+		
+		this.utils.set_screen_timeout(this.original_screen_timeout);
 	}
 }
