@@ -1,39 +1,42 @@
 # UIAutomatorTutorial
 
-UIAutomator é um framework de testes que permite a escrita de testes automatizados para aplicações Android que simulam a interação de um usuário com a UI do sistema.  
-O fluxo de uso mais comum é:  
-- Encontrar um elemento da UI via id, texto, tipo, etc.
-- Interagir com esse elemento (tap, drag, etc).
-Pelo fato da interação se dar com os elementos da UI, não é preciso ter o código-fonte do aplicativo sendo testado. É preciso, no entanto, que os elementos tenham alguma característica que permita diferenciá-los dos demais (texto, id, content description, etc).
+UIAutomator is a test framework created by Google that enables the creation of automated tests for Android applications. These tests simulate the interaction of an actual user with the system UI.
+
+Its workflow is:
+- Finding an UI element by using a combination of its attributes: id, text, content description, and so on.
+- Interacting with this element: tapping, dragging, waiting for it to disappear, etc.
+
+As the framework bases its interactions on visible UI elements, there is no need to have the source code in order to test an app, which is a huge advantage.
+It is needed, however for the target element to have some attribute that can differentiate it from the others, such as id, text, content description, hierarchy position, etc.
 
 ## *Setup*:
-- Baixe e instale o [Android SDK](https://developer.android.com/sdk/index.html)
-- Via SDK Manager, instale a _Android Testing Support Library_
-- Crie um projeto Java simples, adicionando os seguintes jars ao build path:
+- Download and install the [Android SDK](https://developer.android.com/sdk/index.html)
+- Using the SDK Manager, install the _Android Testing Support Library_
+- Create a simple Java project, and add the following jar files to the build path:
   * _android-sdk/platforms/\<api-version\>/android.jar_
   * _android-sdk/platforms/\<api-version\>/uiautomator.jar_
   * _[junit](http://junit.org/)_
-- Rode: `android-sdk/tools/android create uitest-project -n <nome_projeto> -t 1 -p <caminho_projeto>`
-- Rode: `ant build`
-- Rode: `adb push <nome_projeto>.jar /data/local/tmp/`
-- Rode: `adb shell uiautomator runtest <nome_projeto>.jar -c <classe_de_teste_totalmente_qualificada>`
+- Run `android-sdk/tools/android create uitest-project -n <project_name> -t 1 -p <project_path>`
+- Run `ant build`
+- Run `adb push <project_name>.jar /data/local/tmp/`
+- Run `adb shell uiautomator runtest <project_name>.jar -c <totally_qualified_test_class>`
 
 ## *UIAutomatorViewer*
 
-O UIAutomatorViewer é uma ferramenta fundamental para o desenvolvimento com UIAutomator, visto que ela permite inspecionar os widgets da tela atual (seus IDs, texto, tipos, etc). Com essa informação em mãos, o desenvolvedor pode procurar por eles usando a API do UIAutomator e então simular a interação de um usuário com os mesmos.  
-A ferramenta se encontra em _android-sdk/tools/uiautomatorviewer_.
+UIAutomatorViewer is a fundamental tool to UIAutomator development, as it enables inspecting of the system UI widgets (its ids, texts, types, etc). With this information, the developer can search for the widgets and then simulate the user interaction with them using the UIAutomator API.  
+The tool can be found under _android-sdk/tools/uiautomatorviewer_. 
 
 ![screenshot do uiautomatorviewer sendo usado no 'Calendar'](https://i.imgur.com/YshxKe5.png)
 ![screenshot do uiautomatorviewer sendo usado no 'iFood'](https://i.imgur.com/bNSgTVm.png)
 
 ## *API*
 
-A documentação oficial da API pode ser encontrada [aqui](https://developer.android.com/reference/android/support/test/uiautomator/package-summary.html).
+The official API documentation can be found [here](https://developer.android.com/reference/android/support/test/uiautomator/package-summary.html).
 
-## *Projeto Exemplo*
+## *Sample project*
 
-O projeto que se encontra nesse repositório se apresenta totalmente comentado, utilizando as principais features da API do UIAutomator.
+The project that can be found in this repository utilizes most of UIAutomator features, and is thoroughly commented to help in the learning process.
 
-## *Fontes*:
+## *Sources*:
   - https://developer.android.com/
   - http://www.vogella.com/tutorials/AndroidTesting/article.html
