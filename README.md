@@ -29,6 +29,18 @@ The tool can be found under _android-sdk/tools/uiautomatorviewer_.
 ![screenshot do uiautomatorviewer sendo usado no 'Calendar'](https://i.imgur.com/YshxKe5.png)
 ![screenshot do uiautomatorviewer sendo usado no 'iFood'](https://i.imgur.com/bNSgTVm.png)
 
+## Pros and Cons
+
+#### Pros
+- Interaction with all the apps and system UI, instead of just the AUT (Aplication Under Test).
+- Provided and maintained by Google, the same company that maintains Android  .                                   
+- Clear and simple - but powerful - API.
+
+#### Cons
+- It's only available on devices with API level 16 or newer.
+- The classic release o UIAutomator (the one that this tutorial refers to) did not provide good IDE integration (see the setup steps). The newer release, though (launched on March), integrates well with Android Studio, and the final result is a apk, and not a jar file.
+- If the UI element attributes change (text, id, content description) changes, the test has to be updated.
+
 ## *API*
 
 The official API documentation can be found [here](https://developer.android.com/reference/android/support/test/uiautomator/package-summary.html).
@@ -40,3 +52,4 @@ The project that can be found in this repository utilizes most of UIAutomator fe
 ## *Sources*:
   - https://developer.android.com/
   - http://www.vogella.com/tutorials/AndroidTesting/article.html
+  - http://testdroid.com/news/the-pros-and-cons-of-different-android-testing-methods
